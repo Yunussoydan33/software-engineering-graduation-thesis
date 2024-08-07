@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from '../../Src/components/Header/Header';
 import LoginButton from '../../Src/components/LoginButton/LoginButton';
 import { useNavigation } from '@react-navigation/native';
@@ -8,12 +8,14 @@ export default function LoginPage() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <LoginButton onPress={() => navigation.navigate('HomePage')} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Header title="Giriş Yap" />
+        <View style={styles.content}>
+          <LoginButton onPress={() => navigation.navigate('HomePage')} />
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
-    paddingTop: 20, 
+    paddingTop: 20,
     paddingHorizontal: 20,
   },
 });
