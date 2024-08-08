@@ -8,10 +8,10 @@ export default function Welcome({ navigation }) {
       <Text style={styles.title}>Kendi doktor{'\n'}ağını oluştur</Text>
       <Image source={require('../../../Src/assets/Image/First.png')} style={styles.imagePlaceholder} />
       <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate('SignUp')}>
-        <Text style={styles.createButtonText}>Hesap Oluştur  →</Text>
+        <Text style={styles.createButtonText}>Hesap Oluştur   →</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('LoginPage')}>
-        <Text style={styles.loginButtonText}>Giriş Yap  →</Text>
+        <Text style={styles.loginButtonText}>Giriş Yap   →</Text>
       </TouchableOpacity>
     </View>
   );
@@ -28,22 +28,21 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 18,
     fontWeight: 'bold',
-    position: 'absolute',
-    top: 130,
-    left: 50,
+    marginBottom: 20,
+    alignSelf: 'flex-start',
   },
   title: {
-    fontSize: 44,
+    fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'left',
-    width: '95%',
+    width: '100%',
     marginBottom: 20,
-    marginTop: 80,
   },
   imagePlaceholder: {
-    width: '95%',
-    height: 240, 
+    width: '100%',
+    height: 300,
     marginBottom: 60,
+    resizeMode: 'contain',
   },
   createButton: {
     backgroundColor: '#000',
@@ -52,14 +51,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     width: '95%',
-    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   createButtonText: {
     color: '#fff',
     fontSize: 16,
-    flex: 1,
     textAlign: 'center',
   },
   loginButton: {
@@ -69,17 +67,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 5,
     width: '95%',
-    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loginButtonText: {
     color: '#060606',
     fontSize: 16,
-    flex: 1,
     textAlign: 'center',
   },
-  arrowIcon: {
-    marginLeft: 10,
-  },
 });
+

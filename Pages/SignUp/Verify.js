@@ -20,7 +20,7 @@ export default function Verify() {
         <View style={styles.content}>
           <Text style={styles.title}>4 Haneli Kodu Girin</Text>
           <Text style={styles.subtitle}>
-            505 844 37 88 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
+            506 999 88 77 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
           </Text>
           <TouchableOpacity>
             <Text style={styles.changeNumber}>Telefon No’yu Değiştir</Text>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
-    marginTop: 50,
+    marginTop: 50, 
   },
   title: {
     fontSize: 24,
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#333',
-    paddingVertical: 17,
-    paddingHorizontal: 140,
+    paddingVertical: 15,
+    width: '80%',
     borderRadius: 5,
     alignItems: 'center',
   },
@@ -106,3 +106,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+

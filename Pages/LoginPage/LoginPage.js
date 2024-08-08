@@ -25,7 +25,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
-    paddingTop: 20,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 20,
+    width: '100%',
+    marginTop: 0, 
   },
 });

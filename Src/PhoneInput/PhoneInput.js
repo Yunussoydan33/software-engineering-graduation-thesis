@@ -49,6 +49,7 @@ export default function PhoneInput() {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     marginBottom: 20,
   },
   label: {
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     backgroundColor: '#F9FDFE',
+    width: '100%',
   },
   flagContainer: {
     flexDirection: 'row',

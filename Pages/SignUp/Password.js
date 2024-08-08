@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Header from '../../Src/components/Header/Header';
 import PasswordSvg from '../../Src/assets/Svg/PasswordSvg';
-import { useNavigation } from '@react-navigation/native'; // useNavigation'ı import edin
+import { useNavigation } from '@react-navigation/native';
 
 export default function Password() {
   const [isSecure, setIsSecure] = useState(true);
-  const navigation = useNavigation(); // useNavigation hook'unu kullanın
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -26,8 +26,7 @@ export default function Password() {
           </View>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstScreen')}>
-          <Text style={styles.buttonText}>Devam Et</Text>
-          <Text style={styles.arrowIcon}>→</Text>
+          <Text style={styles.buttonText}>Devam Et   →</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -41,10 +40,9 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    marginTop: 50,
   },
   inputContainer: {
     width: '90%',
@@ -75,7 +73,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#000',
     paddingVertical: 18,
-    paddingHorizontal: 140,
     borderRadius: 5,
     width: '90%',
     alignItems: 'center',
@@ -85,6 +82,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    textAlign: 'center',
   },
   arrowIcon: {
     color: '#fff',
@@ -92,3 +90,4 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+

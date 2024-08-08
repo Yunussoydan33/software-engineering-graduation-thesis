@@ -30,13 +30,16 @@ export default function LoginButton({ onPress }) {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 0, 
+    alignItems: 'center',
   },
   label: {
     fontSize: 18,
     marginBottom: 10,
     color: '#333',
+    alignSelf: 'flex-start',
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#F9FDFE',
     marginBottom: 40,
+    width: '100%',
   },
   input: {
     flex: 1,
