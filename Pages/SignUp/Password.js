@@ -13,13 +13,13 @@ export default function Password() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <Header title="Şifre Oluştur" />
-        <View style={styles.content}>
+        <View style={styles.form}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Şifre</Text>
             <View style={styles.inputWrapper}>
               <TextInput
                 style={styles.input}
-                placeholder="password"
+                placeholder="Şifrenizi girin"
                 secureTextEntry={isSecure}
               />
               <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
@@ -28,7 +28,7 @@ export default function Password() {
             </View>
           </View>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstScreen')}>
-            <Text style={styles.buttonText}>Devam Et   →</Text>
+            <Text style={styles.buttonText}>Devam Et</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -41,15 +41,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  content: {
+  form: {
+    marginTop: 50,
+    paddingHorizontal: 35,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    marginTop: -500, 
   },
   inputContainer: {
-    width: '90%',
+    width: '100%',
+    maxWidth: 400,
     marginBottom: 20,
   },
   label: {
@@ -76,23 +75,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#000',
-    paddingVertical: 18,
+    paddingVertical: 17,
     borderRadius: 5,
-    width: '90%',
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
     marginTop: 20,
+    marginBottom: 20,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    textAlign: 'center',
-  },
-  arrowIcon: {
-    color: '#fff',
-    fontSize: 16,
-    marginLeft: 10,
   },
 });
-

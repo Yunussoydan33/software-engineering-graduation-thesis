@@ -13,15 +13,15 @@ export default function Welcome({ navigation }) {
   const handleScroll = (event) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
     const index = Math.floor(scrollPosition / 310); 
-    setCurrentIndex(index);
+    setCurrentIndex(Math.max(0, Math.min(index, images.length - 1)));
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.logoText}>Zuplink</Text>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleTop}>{images[currentIndex].textTop}</Text>
-        <Text style={styles.titleBottom}>{images[currentIndex].textBottom}</Text>
+        <Text style={styles.titleTop}>{images[currentIndex]?.textTop || '...'}</Text>
+        <Text style={styles.titleBottom}>{images[currentIndex]?.textBottom || '...'}</Text>
       </View>
       <View style={styles.carouselContainer}>
         <ScrollView 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   imagePlaceholder: {
-    width: 350, 
+    width: 365, 
     height: 300,
     resizeMode: 'contain',
     marginHorizontal: 10, 
