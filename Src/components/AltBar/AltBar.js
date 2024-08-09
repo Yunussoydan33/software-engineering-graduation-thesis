@@ -24,9 +24,9 @@ export default function AltBar() {
         <Text style={styles.text}>Mesajlar</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('DiscoverPage')}>
-    <KesfetSvg />
-   <Text style={styles.text}>Keşfet</Text>
-  </TouchableOpacity>
+        <KesfetSvg />
+        <Text style={styles.text}>Keşfet</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderColor: '#ccc',
+    position: 'absolute', 
+    bottom: 0,           
+    width: '100%',       
   },
   item: {
     alignItems: 'center',
@@ -47,6 +50,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     color: '#32475D',
-    marginTop: 0, 
   },
 });

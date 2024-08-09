@@ -20,11 +20,11 @@ export default function Travel() {
       </View>
       <View style={styles.row}>
         <TouchableOpacity style={styles.card}>
-          <Text style={styles.text}>Havaalanı Transferi</Text>
+          <Text style={styles.text}>Havaalanı{'\n'}Transferi</Text>
           <VehiclesSvg style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.card}>
-          <Text style={styles.text}>Araba Kiralama</Text>
+          <Text style={styles.text}>Araba{'\n'}Kiralama</Text>
           <CarRentalSvg style={styles.icon} />
         </TouchableOpacity>
       </View>
@@ -45,17 +45,24 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    width: '48%', 
-    padding: 16,
+    width: '48%',
+    paddingVertical: 22,
+    paddingHorizontal: 16,
     alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   text: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 10,
+    color: '#333',
+    flex: 1,
+    flexWrap: 'wrap',
+    textAlign: 'left',
   },
   icon: {
     width: 50,
     height: 50,
+    resizeMode: 'contain',
   },
 });

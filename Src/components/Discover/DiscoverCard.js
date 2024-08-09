@@ -1,58 +1,56 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const data = [
+  { id: '1', image: require('../../assets/Image/doktorr.jpeg') },
+  { id: '2', image: require('../../assets/Image/doktor.jpeg') },
+  { id: '3', image: require('../../assets/Image/doktor3.jpeg') },
+];
 
 export default function DiscoverCard() {
   return (
-    <ScrollView
+    <FlatList
+      data={data}
       horizontal
       pagingEnabled
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.scrollContainer}
-    >
-      <View style={styles.card}>
-        <Image source={require('../../assets/Image/doktor.jpeg')} style={styles.image} />
-        <View style={styles.discountContainer}>
-          <Text style={styles.discountText}>%40 İndirim</Text>
+      snapToAlignment="center"
+      decelerationRate="fast"
+      snapToInterval={width * 0.8 + 14}
+      initialScrollIndex={1} // Ortadaki kartın açılışta görünmesi için
+      getItemLayout={(data, index) => (
+        { length: width * 0.8 + 14, offset: (width * 0.8 + 14) * index, index }
+      )}
+      renderItem={({ item }) => (
+        <View style={styles.card}>
+          <Image source={item.image} style={styles.image} />
+          <View style={styles.discountContainer}>
+            <Text style={styles.discountText}>%40 İndirim</Text>
+          </View>
+          <Text style={styles.title}>Yeni Sağlık Elçilerine Özel</Text>
+          <Text style={styles.subtitle}>Hoşgeldin Paketi</Text>
         </View>
-        <Text style={styles.title}>Yeni Sağlık Elçilerine Özel</Text>
-        <Text style={styles.subtitle}>Hoşgeldin Paketi</Text>
-      </View>
-
-      <View style={styles.card}>
-        <Image source={require('../../assets/Image/doktorr.jpeg')} style={styles.image} />
-        <View style={styles.discountContainer}>
-          <Text style={styles.discountText}>%40 İndirim</Text>
-        </View>
-        <Text style={styles.title}>Yeni Sağlık Elçilerine Özel</Text>
-        <Text style={styles.subtitle}>Hoşgeldin Paketi</Text>
-      </View>
-
-      <View style={styles.card}>
-        <Image source={require('../../assets/Image/doktor3.jpeg')} style={styles.image} />
-        <View style={styles.discountContainer}>
-          <Text style={styles.discountText}>%40 İndirim</Text>
-        </View>
-        <Text style={styles.title}>Yeni Sağlık Elçilerine Özel</Text>
-        <Text style={styles.subtitle}>Hoşgeldin Paketi</Text>
-      </View>
-    </ScrollView>
+      )}
+      keyExtractor={item => item.id}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   scrollContainer: {
+    paddingHorizontal: (width - (width * 0.8)) / 2, // Kartları tam ortaya hizalamak için
     alignItems: 'center',
-    alignItems: 'flex-start', 
-
   },
   card: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    marginHorizontal: 14,
+    marginHorizontal: 7,
     overflow: 'hidden',
-    width: 400, 
+    width: width * 0.8, // Kart genişliği ekran genişliğinin %80'i olacak
     alignItems: 'center',
-    
   },
   image: {
     width: '100%',
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
   },
   discountContainer: {
     position: 'absolute',
-    top: 10,
+    top: 20,
     left: 10,
     backgroundColor: '#FFD700',
     borderRadius: 5,

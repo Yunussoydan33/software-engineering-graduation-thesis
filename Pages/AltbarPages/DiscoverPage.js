@@ -7,7 +7,7 @@ import New from '../../Src/components/New/New';
 import Doctors from '../../Src/components/Doctor/Doctors'; 
 import Special2 from '../../Src/components/Special2/Special2'; 
 import ExpertOpinion from '../../Src/components/ExpertOpinion/ExpertOpinion'; 
-import AltBar from '../../Src/components/AltBar/AltBar'; // AltBar bileşenini import ediyoruz
+import AltBar from '../../Src/components/AltBar/AltBar';
 
 export default function DiscoverPage() {
   return (
@@ -35,7 +35,9 @@ export default function DiscoverPage() {
           <ExpertOpinion /> 
         </View>
       </ScrollView>
-      <AltBar /> 
+      <View style={styles.altBarContainer}>
+        <AltBar /> 
+      </View>
     </View>
   );
 }
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDF2FE',
   },
   scrollContainer: {
-    paddingBottom: 60, // AltBar ile çakışmayı önlemek için ekstra alt boşluk ekliyoruz
+    paddingBottom: 60, 
   },
   cardContainer: {
     marginBottom: 16,
@@ -69,4 +71,5 @@ const styles = StyleSheet.create({
   expertOpinionContainer: {
     marginBottom: 16,
   },
+  
 });

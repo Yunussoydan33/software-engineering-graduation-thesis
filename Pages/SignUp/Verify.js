@@ -22,7 +22,7 @@ export default function Verify() {
           <Text style={styles.subtitle}>
             505 844 37 88 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.changeNumber}>Telefon No’yu Değiştir</Text>
           </TouchableOpacity>
           <View style={styles.codeContainer}>
@@ -106,4 +106,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-

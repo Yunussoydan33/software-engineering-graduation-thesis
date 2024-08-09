@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#EDF2FE',
-    height: 130,
+    backgroundColor: '#E8EFFF',
+    height: 70,
+    marginTop: -15,
   },
   icon: {
     width: 24,

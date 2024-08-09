@@ -32,7 +32,7 @@ export default function LoginButton({ onPress }) {
       </TouchableOpacity>
       <View style={styles.signUpContainer}>
         <Text style={styles.footerText}>Üye Değil misiniz?</Text>
-        <TouchableOpacity onPress={() => {/* Üye Ol sayfasına yönlendirme */}}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.signUp}> Hemen Üye Ol</Text>
         </TouchableOpacity>
       </View>
