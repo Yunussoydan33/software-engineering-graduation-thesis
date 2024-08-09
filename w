@@ -3,26 +3,23 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'rea
 
 export default function Welcome({ navigation }) {
   const images = [
-    { src: require('../../../Src/assets/Image/First.png'), textTop: 'Kendi Doktor', textBottom: 'Ağını Oluştur' },
-    { src: require('../../../Src/assets/Image/second.png'), textTop: 'Sağlıkların Elçisi ', textBottom: 'Ol' },
-    { src: require('../../../Src/assets/Image/third.png'), textTop: 'Hem Kazan', textBottom: 'Hem Yaşat' },
+    { src: require('../../../Src/assets/Image/First.png'), text: 'Kendi Doktor Ağını oluştur' },
+    { src: require('../../../Src/assets/Image/second.png'), text: 'Sağlık Elçisi Ol' },
+    { src: require('../../../Src/assets/Image/third.png'), text: 'Hem kazan hem yaşat' },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentText, setCurrentText] = useState(images[0].text);
 
   const handleScroll = (event) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
-    const index = Math.floor(scrollPosition / 310); 
-    setCurrentIndex(index);
+    const currentIndex = Math.floor(scrollPosition / 310); 
+    setCurrentText(images[currentIndex].text);
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.logoText}>Zuplink</Text>
-      <View style={styles.titleContainer}>
-        <Text style={styles.titleTop}>{images[currentIndex].textTop}</Text>
-        <Text style={styles.titleBottom}>{images[currentIndex].textBottom}</Text>
-      </View>
+      <Text style={styles.title}>{currentText}</Text>
       <View style={styles.carouselContainer}>
         <ScrollView 
           horizontal 
@@ -35,17 +32,6 @@ export default function Welcome({ navigation }) {
             <Image key={index} source={image.src} style={styles.imagePlaceholder} />
           ))}
         </ScrollView>
-        <View style={styles.indicatorContainer}>
-          {images.map((_, index) => (
-            <View 
-              key={index} 
-              style={[
-                styles.indicator, 
-                currentIndex === index && styles.activeIndicator
-              ]} 
-            />
-          ))}
-        </View>
       </View>
       <TouchableOpacity style={styles.createButton} onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.createButtonText}>Hesap Oluştur   →</Text>
@@ -71,19 +57,12 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     alignSelf: 'flex-start',
   },
-  titleContainer: {
-    marginBottom: 20,
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    textAlign: 'left',
     width: '100%',
-  },
-  titleTop: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    textAlign: 'left',
-  },
-  titleBottom: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    textAlign: 'left',
+    marginBottom: 20,
   },
   carouselContainer: {
     height: 300, 
@@ -94,21 +73,6 @@ const styles = StyleSheet.create({
     height: 300,
     resizeMode: 'contain',
     marginHorizontal: 10, 
-  },
-  indicatorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10,
-  },
-  indicator: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#ccc',
-    marginHorizontal: 5,
-  },
-  activeIndicator: {
-    backgroundColor: '#000',
   },
   createButton: {
     backgroundColor: '#000',

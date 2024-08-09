@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from '../../Src/components/Header/Header';
 import PasswordSvg from '../../Src/assets/Svg/PasswordSvg';
+import PasswordSeeSvg from '../../Src/assets/Svg/PaswordSeeSvg';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Password() {
@@ -9,27 +10,29 @@ export default function Password() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Header title="Şifre Oluştur" />
-      <View style={styles.content}>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Şifre</Text>
-          <View style={styles.inputWrapper}>
-            <TextInput
-              style={styles.input}
-              placeholder="password"
-              secureTextEntry={isSecure}
-            />
-            <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
-              <PasswordSvg />
-            </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Header title="Şifre Oluştur" />
+        <View style={styles.content}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Şifre</Text>
+            <View style={styles.inputWrapper}>
+              <TextInput
+                style={styles.input}
+                placeholder="password"
+                secureTextEntry={isSecure}
+              />
+              <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
+                {isSecure ? <PasswordSvg /> : <PasswordSeeSvg />}
+              </TouchableOpacity>
+            </View>
           </View>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstScreen')}>
+            <Text style={styles.buttonText}>Devam Et   →</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstScreen')}>
-          <Text style={styles.buttonText}>Devam Et   →</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -43,10 +46,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    marginTop: -500, 
   },
   inputContainer: {
     width: '90%',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   label: {
     fontSize: 18,
@@ -78,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: '#fff',

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import PhoneInput from '../../PhoneInput/PhoneInput';
 import PasswordSvg from '../../assets/Svg/PasswordSvg';
+import PaswordSeeSvg from '../../assets/Svg/PaswordSeeSvg';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LoginButton({ onPress }) {
   const [isSecure, setIsSecure] = useState(true);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -17,13 +20,22 @@ export default function LoginButton({ onPress }) {
           secureTextEntry={isSecure}
         />
         <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
-          <PasswordSvg />
+          {isSecure ? <PasswordSvg /> : <PaswordSeeSvg />}
         </TouchableOpacity>
       </View>
+      <TouchableOpacity onPress={() => navigation.navigate('Verify')} style={styles.forgotPasswordContainer}>
+        <Text style={styles.forgotPassword}>Şifremi Unuttum</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={styles.buttonText}>Devam Et</Text>
         <Text style={styles.arrowIcon}>→</Text>
       </TouchableOpacity>
+      <View style={styles.signUpContainer}>
+        <Text style={styles.footerText}>Üye Değil misiniz?</Text>
+        <TouchableOpacity onPress={() => {/* Üye Ol sayfasına yönlendirme */}}>
+          <Text style={styles.signUp}> Hemen Üye Ol</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -32,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 20,
-    paddingTop: 0, 
+    paddingTop: 0,
     alignItems: 'center',
   },
   label: {
@@ -48,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: '#959FBA',
     borderRadius: 5,
     backgroundColor: '#F9FDFE',
-    marginBottom: 40,
+    marginBottom: 10, 
     width: '100%',
   },
   input: {
@@ -60,6 +72,17 @@ const styles = StyleSheet.create({
   icon: {
     padding: 10,
   },
+  forgotPasswordContainer: {
+    width: '100%',
+    alignItems: 'flex-end',
+    marginBottom: 20, 
+  },
+  forgotPassword: {
+    color: '#007BFF',
+    fontSize: 14,
+    marginBottom: 20, 
+
+  },
   button: {
     backgroundColor: '#000',
     paddingVertical: 15,
@@ -68,6 +91,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 70, 
+
   },
   buttonText: {
     color: '#fff',
@@ -77,5 +102,19 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     marginLeft: 10,
+  },
+  signUpContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20, 
+  },
+  footerText: {
+    color: '#333',
+    fontSize: 14,
+  },
+  signUp: {
+    color: '#007BFF',
+    fontSize: 14,
   },
 });

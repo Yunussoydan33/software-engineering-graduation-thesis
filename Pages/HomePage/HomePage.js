@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from '../../Src/components/Upper/Header';
+import AltBar from '../../Src/components/AltBar/AltBar';
 
 export default function HomePage() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>HomePage</Text>
+      <Header />
+      <View style={styles.content}>
+      </View>
+      <AltBar />
     </View>
   );
 }
@@ -12,12 +17,9 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#EDF2FE',
   },
-  text: {
-    fontSize: 24,
-    color: '#333',
+  content: {
+    flex: 1,
   },
 });

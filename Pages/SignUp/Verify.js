@@ -20,7 +20,7 @@ export default function Verify() {
         <View style={styles.content}>
           <Text style={styles.title}>4 Haneli Kodu Girin</Text>
           <Text style={styles.subtitle}>
-            506 999 88 77 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
+            505 844 37 88 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
           </Text>
           <TouchableOpacity>
             <Text style={styles.changeNumber}>Telefon No’yu Değiştir</Text>
