@@ -15,7 +15,7 @@ const specialties = [
 const SpecialtyCard = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Size Uygun Doktorlar</Text>
+      <Text style={styles.sectionTitle}>Doktor Ağınız</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
         {specialties.map((specialty, index) => (
           <TouchableOpacity key={index} style={[styles.card, { width: cardWidth }]}>
