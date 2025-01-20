@@ -1,26 +1,70 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import Header from '../../Src/components/Header/Header';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import axios from 'axios';
+import { BASE_URL } from '../../Src/config';
 
 export default function Verify() {
-  const [code, setCode] = useState(['', '', '', '']);
+  const [code, setCode] = useState(['', '', '', '', '', '']);
   const navigation = useNavigation();
+  const route = useRoute();
+  const { phoneNumber } = route.params;
+
+  const inputRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   const handleInputChange = (text, index) => {
     let newCode = [...code];
     newCode[index] = text;
     setCode(newCode);
+
+    if (text && index < inputRefs.length - 1) {
+      inputRefs[index + 1].current.focus();
+    }
   };
 
+  const handleVerifyOtp = async () => {
+    const otpCode = code.join('');
+  
+    if (otpCode.length !== 6) {
+      Alert.alert("Uyarı", "Lütfen 6 haneli kodu giriniz.");
+      return;
+    }
+  
+    try {
+      const response = await axios.post(`${BASE_URL}/otp-verify`, { email: phoneNumber, otp: otpCode });
+  
+      Alert.alert(
+        "Başarılı",
+        "Telefon numaranız başarıyla doğrulandı.",
+        [
+          {
+            text: "Tamam",
+            onPress: () => navigation.navigate('Password', { phoneNumber }),
+          },
+        ]
+      );
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "OTP doğrulama başarısız!";
+      Alert.alert("Hata", errorMessage);
+    }
+  };
+  
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <Header title="Hesap Oluştur" />
         <View style={styles.content}>
-          <Text style={styles.title}>4 Haneli Kodu Girin</Text>
+          <Text style={styles.title}>6 Haneli Kodu Girin</Text>
           <Text style={styles.subtitle}>
-            505 844 37 88 nolu cep telefonunuza {'\n'} mesaj olarak gelen 4 haneli kodu girin
+            {phoneNumber} nolu cep telefonunuza {'\n'} mesaj olarak gelen 6 haneli kodu girin
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.changeNumber}>Telefon No’yu Değiştir</Text>
@@ -29,15 +73,22 @@ export default function Verify() {
             {code.map((digit, index) => (
               <TextInput
                 key={index}
+                ref={inputRefs[index]}
                 style={styles.codeInput}
                 maxLength={1}
                 keyboardType="numeric"
                 value={digit}
                 onChangeText={(text) => handleInputChange(text, index)}
+                onKeyPress={({ nativeEvent }) => {
+                  if (nativeEvent.key === 'Backspace' && index > 0 && !digit) {
+                    inputRefs[index - 1].current.focus();
+                  }
+                }}
+                textAlign="center"
               />
             ))}
           </View>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Password')}>
+          <TouchableOpacity style={styles.button} onPress={handleVerifyOtp}>
             <Text style={styles.buttonText}>Devam Et</Text>
           </TouchableOpacity>
         </View>
@@ -49,50 +100,46 @@ export default function Verify() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F4F5F7',
   },
   content: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
     padding: 20,
-    marginTop: 50, 
+    flex: 1,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#333',
+    textAlign: 'center',
+    color: '#3F414E',
   },
   subtitle: {
     fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
     marginBottom: 20,
-    lineHeight: 23,
+    textAlign: 'center',
+    color: '#6B7280',
   },
   changeNumber: {
-    color: '#007BFF',
-    marginBottom: 40,
     fontSize: 16,
+    color: '#007BFF',
+    textAlign: 'center',
+    marginBottom: 30,
   },
   codeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 40,
-    width: '80%',
   },
   codeInput: {
     width: 50,
     height: 50,
-    borderWidth: 1,
-    borderColor: '#67729429',
-    textAlign: 'center',
-    fontSize: 24,
     borderRadius: 25,
-    marginHorizontal: 5,
-    backgroundColor: 'white',
-    color: '#4285F4',  
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#333',
+    backgroundColor: '#FFF',
   },
   button: {
     backgroundColor: '#333',
@@ -100,6 +147,8 @@ const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 20,
+    alignSelf: 'center',
   },
   buttonText: {
     color: '#fff',

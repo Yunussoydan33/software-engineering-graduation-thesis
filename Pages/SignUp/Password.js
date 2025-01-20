@@ -1,13 +1,46 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import Header from '../../Src/components/Header/Header';
 import PasswordSvg from '../../Src/assets/Svg/PasswordSvg';
 import PasswordSeeSvg from '../../Src/assets/Svg/PaswordSeeSvg';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import axios from 'axios';
+import { BASE_URL } from '../../Src/config';
 
 export default function Password() {
   const [isSecure, setIsSecure] = useState(true);
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
+  const route = useRoute();
+  const { phoneNumber } = route.params;
+
+  const handleSignUp = async () => {
+    const passwordRegex = /^\d{6}$/;
+  
+    if (!passwordRegex.test(password)) {
+      Alert.alert("Hata", "Şifre tam olarak 6 haneli olmalıdır.");
+      return;
+    }
+  
+    try {
+      const response = await axios.post(`${BASE_URL}/signup`, { email: phoneNumber, password });
+  
+      Alert.alert(
+        "Başarılı",
+        "Hesabınız başarıyla oluşturuldu.",
+        [
+          {
+            text: "Tamam",
+            onPress: () => navigation.navigate('LoginPage'),
+          },
+        ]
+      );
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Hesap oluşturulamadı!";
+      Alert.alert("Hata", errorMessage);
+    }
+  };
+  
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -19,15 +52,19 @@ export default function Password() {
             <View style={styles.inputWrapper}>
               <TextInput
                 style={styles.input}
-                placeholder="Şifrenizi girin"
+                placeholder="6 haneli şifrenizi girin"
                 secureTextEntry={isSecure}
+                value={password}
+                onChangeText={setPassword}
+                keyboardType="numeric"
+                maxLength={6}
               />
               <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
                 {isSecure ? <PasswordSvg /> : <PasswordSeeSvg />}
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstScreen')}>
+          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
             <Text style={styles.buttonText}>Devam Et</Text>
           </TouchableOpacity>
         </View>

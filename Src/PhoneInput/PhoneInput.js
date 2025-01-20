@@ -2,22 +2,34 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, FlatList } from 'react-native';
 import { countries } from '../data/countries';
 
-export default function PhoneInput() {
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-  const [phoneNumber, setPhoneNumber] = useState('');
+export default function PhoneInput({ phoneNumber, setPhoneNumber }) {
+  // Set Turkey as the default selected country
+  const [selectedCountry, setSelectedCountry] = useState(countries.find(country => country.code === 'TR'));
   const [modalVisible, setModalVisible] = useState(false);
+  const [number, setNumber] = useState('');
 
-  const renderCountryItem = ({ item }) => (
-    <TouchableOpacity style={styles.countryItem} onPress={() => selectCountry(item)}>
-      <Text style={styles.flag}>{item.flag}</Text>
-      <Text style={styles.countryName}>{item.name}</Text>
-      <Text style={styles.dialCode}>{item.dial_code}</Text>
-    </TouchableOpacity>
-  );
+  const renderCountryItem = ({ item, index }) => {
+    if (index === 0) {
+      return <View style={{ height: 100 }} />;
+    }
+
+    return (
+      <TouchableOpacity style={styles.countryItem} onPress={() => selectCountry(item)}>
+        <Text style={styles.flag}>{item.flag}</Text>
+        <Text style={styles.countryName}>{item.name}</Text>
+        <Text style={styles.dialCode}>{item.dial_code}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   const selectCountry = (country) => {
     setSelectedCountry(country);
     setModalVisible(false);
+  };
+
+  const handlePhoneNumberChange = (value) => {
+    setNumber(value);
+    setPhoneNumber(selectedCountry.dial_code + value);
   };
 
   return (
@@ -32,8 +44,8 @@ export default function PhoneInput() {
           style={styles.input}
           placeholder="505 844 37 88"
           keyboardType="phone-pad"
-          value={phoneNumber}
-          onChangeText={setPhoneNumber}
+          value={number}
+          onChangeText={handlePhoneNumberChange}
         />
       </View>
       <Modal visible={modalVisible} animationType="slide">
@@ -42,10 +54,14 @@ export default function PhoneInput() {
           keyExtractor={(item) => item.code}
           renderItem={renderCountryItem}
         />
+        <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+          <Text style={styles.closeButtonText}>Kapat</Text>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -103,6 +119,15 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   dialCode: {
+    fontSize: 16,
+  },
+  closeButton: {
+    padding: 15,
+    backgroundColor: '#000',
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    color: '#fff',
     fontSize: 16,
   },
 });

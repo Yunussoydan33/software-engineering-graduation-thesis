@@ -1,32 +1,63 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import PhoneInput from '../../PhoneInput/PhoneInput';
 import PasswordSvg from '../../assets/Svg/PasswordSvg';
 import PaswordSeeSvg from '../../assets/Svg/PaswordSeeSvg';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import { BASE_URL } from '../../../Src/config'; // Backend URL
 
-export default function LoginButton({ onPress }) {
+export default function LoginButton() {
   const [isSecure, setIsSecure] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const handleLogin = async () => {
+    if (!phoneNumber || !password) {
+      Alert.alert("Hata", "Telefon numarası ve şifre gereklidir.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${BASE_URL}/login`, {
+        email: phoneNumber, // Telefon numarasını backend'de email alanına bağlıyoruz
+        password: password,
+      });
+
+      Alert.alert("Başarılı", response.data.message, [
+        {
+          text: "Tamam",
+          onPress: () => navigation.navigate('HomePage'),
+        },
+      ]);
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Giriş işlemi başarısız!";
+      Alert.alert("Hata", errorMessage);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <PhoneInput />
+      <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
       <Text style={styles.label}>Şifre</Text>
       <View style={styles.inputWrapper}>
         <TextInput
           style={styles.input}
           placeholder="password"
           secureTextEntry={isSecure}
+          keyboardType="default"
+          value={password}
+          onChangeText={(value) => setPassword(value)}
         />
         <TouchableOpacity onPress={() => setIsSecure(!isSecure)} style={styles.icon}>
           {isSecure ? <PasswordSvg /> : <PaswordSeeSvg />}
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Verify')} style={styles.forgotPasswordContainer}>
+      <TouchableOpacity style={styles.forgotPasswordContainer}>
         <Text style={styles.forgotPassword}>Şifremi Unuttum</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Devam Et</Text>
         <Text style={styles.arrowIcon}>→</Text>
       </TouchableOpacity>
@@ -60,7 +91,7 @@ const styles = StyleSheet.create({
     borderColor: '#959FBA',
     borderRadius: 5,
     backgroundColor: '#F9FDFE',
-    marginBottom: 10, 
+    marginBottom: 10,
     width: '100%',
   },
   input: {
@@ -75,13 +106,12 @@ const styles = StyleSheet.create({
   forgotPasswordContainer: {
     width: '100%',
     alignItems: 'flex-end',
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   forgotPassword: {
     color: '#007BFF',
     fontSize: 14,
-    marginBottom: 20, 
-
+    marginBottom: 20,
   },
   button: {
     backgroundColor: '#000',
@@ -91,8 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 70, 
-
+    marginBottom: 70,
   },
   buttonText: {
     color: '#fff',
@@ -107,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20, 
+    marginTop: 20,
   },
   footerText: {
     color: '#333',

@@ -9,6 +9,7 @@ import SpecialtyCard from '../../Src/components/HomePage/SpecialtyCard';
 import SectionCard from '../../Src/components/HomePage/SectionCard';
 import Header from '../../Src/components/Upper/Header';
 import AltBar from '../../Src/components/AltBar/AltBar';
+import TeklifCart from '../../Src/components/HomePage/TeklifCart';
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Score />
         <RevenueCard />
+        <TeklifCart />
         <ProfileCompletionCard />
         <DocumentUploadCard />
         <DoctorSearch />
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     alignItems: 'center',
     paddingVertical: 20,
-    paddingBottom: 60,
+    paddingBottom: 100,
   },
 });
 

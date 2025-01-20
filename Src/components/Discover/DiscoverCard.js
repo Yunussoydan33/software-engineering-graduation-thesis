@@ -20,7 +20,7 @@ export default function DiscoverCard() {
       snapToAlignment="center"
       decelerationRate="fast"
       snapToInterval={width * 0.8 + 14}
-      initialScrollIndex={1} // Ortadaki kartın açılışta görünmesi için
+      initialScrollIndex={1} 
       getItemLayout={(data, index) => (
         { length: width * 0.8 + 14, offset: (width * 0.8 + 14) * index, index }
       )}
@@ -41,7 +41,7 @@ export default function DiscoverCard() {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    paddingHorizontal: (width - (width * 0.8)) / 2, // Kartları tam ortaya hizalamak için
+    paddingHorizontal: (width - (width * 0.8)) / 2, 
     alignItems: 'center',
   },
   card: {
@@ -49,8 +49,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 7,
     overflow: 'hidden',
-    width: width * 0.8, // Kart genişliği ekran genişliğinin %80'i olacak
+    width: width * 0.8, 
     alignItems: 'center',
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.2, 
+    shadowRadius: 3, 
+    elevation: 3,
   },
   image: {
     width: '100%',
@@ -81,3 +86,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+

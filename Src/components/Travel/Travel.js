@@ -51,6 +51,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    shadowColor: '#000', // Gölge rengi
+    shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+    shadowOpacity: 0.2, // Opaklık: 20%
+    shadowRadius: 3, // Blur: 3
+    elevation: 3,
   },
   text: {
     fontSize: 16,
@@ -66,3 +71,4 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 });
+

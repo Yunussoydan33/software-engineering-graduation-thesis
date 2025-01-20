@@ -18,7 +18,7 @@ export default function Welcome({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logoText}>Zuplink</Text>
+      <Text style={styles.logoText}>Yunus Soydan</Text>
       <View style={styles.titleContainer}>
         <Text style={styles.titleTop}>{images[currentIndex]?.textTop || '...'}</Text>
         <Text style={styles.titleBottom}>{images[currentIndex]?.textBottom || '...'}</Text>

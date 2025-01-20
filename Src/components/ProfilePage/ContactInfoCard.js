@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 const ContactInfoCard = () => {
-  const [phone, setPhone] = useState(' 0 (541) 152 33 52');
+  const [phone, setPhone] = useState(' 0 (505) 844 37 88');
   const [email, setEmail] = useState('');
 
   return (

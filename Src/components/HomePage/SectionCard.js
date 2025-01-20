@@ -63,16 +63,17 @@ const SectionCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-    width: '94%',
-    marginTop: 20,
-    paddingRight: 10,
-  },
+  borderRadius: 10,
+  shadowColor: '#000', // Gölge rengi
+  shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+  shadowOpacity: 0.2, // Opaklık: 20%
+  shadowRadius: 3, // Blur: 3
+  elevation: 3,
+  width: '94%',
+  marginTop: 20,
+  paddingRight: 10,
+},
+
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',

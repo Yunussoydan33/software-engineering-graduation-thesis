@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window'); 
 const cardWidth = (width - 80) / 3.03; 
@@ -13,12 +14,18 @@ const specialties = [
 ];
 
 const SpecialtyCard = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Doktor Ağınız</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
         {specialties.map((specialty, index) => (
-          <TouchableOpacity key={index} style={[styles.card, { width: cardWidth }]}>
+          <TouchableOpacity 
+            key={index} 
+            style={[styles.card, { width: cardWidth }]}
+            onPress={() => navigation.navigate('DoctorListPage')} // Yönlendirme işlemi
+          >
             <Image source={specialty.icon} style={styles.icon} />
             <Text style={styles.title}>{specialty.title}</Text>
             <Text style={styles.specialists}>{specialty.specialists} Uzman</Text>
@@ -31,17 +38,18 @@ const SpecialtyCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-    width: '94%',
-    marginTop: 20,
-    paddingRight: 10,
-    alignSelf: 'center',
-  },
+  borderRadius: 10,
+  shadowColor: '#000', // Gölge rengi
+  shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+  shadowOpacity: 0.2, // Opaklık: 20%
+  shadowRadius: 3, // Blur: 3
+  elevation: 3,
+  width: '94%',
+  marginTop: 20,
+  paddingRight: 10,
+  alignSelf: 'center',
+},
+
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',

@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
+    shadowColor: '#000', // Gölge rengi
+    shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+    shadowOpacity: 0.2, // Opaklık: 20%
+    shadowRadius: 3, // Blur: 3
+    elevation: 3,
   },
   image: {
     width: '100%',

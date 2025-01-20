@@ -25,22 +25,22 @@ const DoctorCard = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#f7f9fc',
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-    marginHorizontal: 10,
-    width: '90%',
-    alignSelf: 'center',
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+  backgroundColor: '#f7f9fc',
+  borderRadius: 10,
+  padding: 20,
+  shadowColor: '#000', // Gölge rengi
+  shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+  shadowOpacity: 0.2, // Opaklık: 20%
+  shadowRadius: 3, // Blur: 3
+  elevation: 3,
+  marginHorizontal: 10,
+  width: '90%',
+  alignSelf: 'center',
+  marginTop: 20,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+},
   textContainer: {
     flex: 1,
     marginRight: 10,

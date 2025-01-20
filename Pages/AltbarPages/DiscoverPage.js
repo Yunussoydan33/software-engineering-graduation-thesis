@@ -8,6 +8,7 @@ import Doctors from '../../Src/components/Doctor/Doctors';
 import Special2 from '../../Src/components/Special2/Special2'; 
 import ExpertOpinion from '../../Src/components/ExpertOpinion/ExpertOpinion'; 
 import AltBar from '../../Src/components/AltBar/AltBar';
+import CashBacCardScrollable from '../../Src/components/CashBackCard/CashBacCardScrollable'; 
 
 export default function DiscoverPage() {
   return (
@@ -34,6 +35,9 @@ export default function DiscoverPage() {
         <View style={styles.expertOpinionContainer}>
           <ExpertOpinion /> 
         </View>
+        <View style={styles.cashBacCardContainer}>
+          <CashBacCardScrollable />  
+        </View>
       </ScrollView>
       <View style={styles.altBarContainer}>
         <AltBar /> 
@@ -46,9 +50,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EDF2FE',
+    paddingTop: 30,
   },
   scrollContainer: {
-    paddingBottom: 60, 
+    paddingBottom: 100, 
   },
   cardContainer: {
     marginBottom: 16,
@@ -69,6 +74,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   expertOpinionContainer: {
+    marginBottom: 16,
+  },
+  cashBacCardContainer: {
     marginBottom: 16,
   },
   

@@ -40,18 +40,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
     color: '#7685AA',
-
   },
   card: {
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden',
+    shadowColor: '#000', // Gölge rengi
+    shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+    shadowOpacity: 0.2, // Opaklık: 20%
+    shadowRadius: 3, // Blur: 3
+    elevation: 3,
   },
   image: {
     width: '100%',
     height: 150,
     marginBottom: 16,
-
   },
   textContainer: {
     padding: 16,

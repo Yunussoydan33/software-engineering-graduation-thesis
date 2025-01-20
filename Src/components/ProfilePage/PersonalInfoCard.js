@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 const PersonalInfoCard = () => {
-  const [firstName, setFirstName] = useState('Vuslat');
-  const [lastName, setLastName] = useState('Coşkun');
+  const [firstName, setFirstName] = useState('Yunus Emre');
+  const [lastName, setLastName] = useState('SOYDAN');
   const [birthDate, setBirthDate] = useState('');
   const [education, setEducation] = useState('');
 

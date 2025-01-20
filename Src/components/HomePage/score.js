@@ -1,19 +1,21 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const Score = () => {
   const score = 24;
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ScoreDetailsPage')}>
       <View style={styles.header}>
-        <Image
-          source={{ uri: "https://s3-alpha-sig.figma.com/img/0932/525e/492ac655666d5afd806861cc7baa49a9?Expires=1724025600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bFOwCMEXMgqfxUYqXjjDUqzo-EMqwDScKvXPYA9HW8TvPNmnpNaQDKKlSkLZp1kfO88DUUuAuhS7rpKJa5LjeHGFWhqyaPrsSXBinGvD8RQUjTmjUJHI65BRJ6z4LEhpBScBqNCYz5-PZbB5il0SvXvT7SDXhd9OI5nf2JPcqpSYsdDg2gJ3A-BLcRAxypkS7M7TWVXIDSY7uvdwGb-cPzYO2-MZf0LwhN60o3SGRZsOejQhwolxoOM0rngpDQI2Sf6ChkW14moQh62nYfK2KFe4zU5U4f01orR97r6s-S9lJ2pnXlZU49Y8upHCot-iv9oWrE1h8n9wPyo5fMw6xw__" }}
+      <Image
+          source={require('../../assets/Image/yunus.png')} // yunus.png'yi ekliyoruz
           style={styles.avatar}
         />
         <View style={styles.headerText}>
           <Text style={styles.greeting}>Merhaba,</Text>
-          <Text style={styles.name}>Vuslat Coşkun</Text>
+          <Text style={styles.name}>Yunus Emre SOYDAN</Text>
         </View>
       </View>
       <View style={styles.divider} />
@@ -27,7 +29,7 @@ const Score = () => {
           <Text style={styles.score}>{score}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -36,10 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7f9fc",
     borderRadius: 10,
     padding: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowColor: "#000", // Gölge rengi
+    shadowOffset: { width: 0, height: 2 }, // X: 0, Y: 2
+    shadowOpacity: 0.2, // Opaklık: 20%
+    shadowRadius: 3, // Blur: 3
     elevation: 3,
     marginHorizontal: 10,
     width: "90%",

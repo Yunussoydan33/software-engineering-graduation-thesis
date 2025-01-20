@@ -1,13 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ProfileSvg from '../../assets/Svg/ProfileSvg';
 import NotificationSvg from '../../assets/Svg/NotificitionSvg';
 
 export default function Header() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.headerContainer}>
-      <ProfileSvg style={styles.icon} />
-      <Text style={styles.title}>Zuplink</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('EarningsPage')}>
+        <ProfileSvg style={styles.icon} />
+      </TouchableOpacity>
+      <Text style={styles.title}>SOYDAN</Text>
       <NotificationSvg style={styles.icon} />
     </View>
   );

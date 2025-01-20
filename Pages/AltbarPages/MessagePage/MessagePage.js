@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function MessagePage() {
   return (
     <View style={styles.container}>
-      <Text>Mesajlar Sayfası</Text>
+      <Text>Henüz Bir Mesajınız Yok</Text>
     </View>
   );
 }
